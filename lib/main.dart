@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:koodiarana_cl/screens/pages/first_login.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:koodiarana_cl/screens/pages/first_login.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:koodiarana_cl/screens/pages/signup.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:koodiarana_cl/screens/theme.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       home: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        // home: Signup(),
-        home: FirstLogin(),
+        home: Signup(),
+        // home: FirstLogin(),
       ),
     );
   }

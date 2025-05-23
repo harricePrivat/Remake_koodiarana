@@ -84,7 +84,7 @@ class _SignupState extends State<Signup> {
                   spacing: 8,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset("assets/Facebook.png", width: 20, height: 20),
+                    Image.asset("assets/Facebook.png", width: 25, height: 25),
                     Text(
                       "Se connecter avec Facebook",
                       style: GoogleFonts.poppins(color: Colors.black),

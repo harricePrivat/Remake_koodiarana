@@ -27,14 +27,14 @@ class PhoneNumber extends StatelessWidget {
                 "assets/koodiarana-removebg.png",
               ),
               Text("Enter your phone number", style: textTheme.displaySmall),
-
-              InputKoodiarana(
-                height: 50,
-                placeholder: Text("Phone number"),
-                controller: num,
-                textInputType: TextInputType.number,
-                //   trailing: Icon(Icons.lock_outline, color: Colors.grey[500]),
-              ),
+                  InputKoodiarana(
+                    height: 50,
+                    placeholder: Text("Phone number"),
+                    controller: num,
+                    textInputType: TextInputType.number,
+                    //   trailing: Icon(Icons.lock_outline, color: Colors.grey[500]),
+                  ),
+               
 
               ButtonKoodiarana(
                 onTap: () {},

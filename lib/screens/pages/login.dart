@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
                   ),
                   IconButton(
                     onPressed: () {
-                      context.go("/sign-up");
+                      context.push("/phone-number");
                     },
                     icon: Image.asset("assets/frame40.png"),
                   ),

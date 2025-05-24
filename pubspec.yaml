@@ -76,6 +76,9 @@ flutter:
     - assets/frame40.png
     - assets/4dd6a437-c139-49a4-8e95-5532dcafa3c11.png
     - assets/scroll2.png
+    - assets/bottom1.png
+    - assets/bottom2.png
+    - assets/bottom3.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

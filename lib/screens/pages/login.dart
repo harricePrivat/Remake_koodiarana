@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:koodiarana_cl/screens/components/shad_button.dart';
 import 'package:koodiarana_cl/screens/components/input.dart';
@@ -45,7 +46,9 @@ class _LoginState extends State<Login> {
               ),
               ButtonKoodiarana(
                 child: sd.Text("Log in ", style: TextStyle(fontSize: 22)),
-                onTap: () {},
+                onTap: () {
+                  context.go("/homepage");
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +59,7 @@ class _LoginState extends State<Login> {
                     style: textTheme.displaySmall,
                   ),
                   Text(
-                    "Sign in",
+                    "Sign up",
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w800,
                       fontSize: 16,
@@ -65,7 +68,9 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.go("/sign-up");
+                    },
                     icon: Image.asset("assets/frame40.png"),
                   ),
                 ],
@@ -109,5 +114,12 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controllerEmail.dispose();
+    controllerPassword.dispose();
   }
 }

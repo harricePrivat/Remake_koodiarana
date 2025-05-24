@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/input.dart';
 import '../components/shad_button.dart';
@@ -12,7 +13,9 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
+  TextEditingController controllerPassword1 = TextEditingController();
+    TextEditingController controllerPassword2 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -38,12 +41,12 @@ class _SignupState extends State<Signup> {
               ),
               InputKoodiarana(
                 placeholder: Text("Password"),
-                controller: controllerPassword,
+                controller: controllerPassword1,
                 trailing: Icon(Icons.lock_outline, color: Colors.grey[500]),
               ),
               InputKoodiarana(
                 placeholder: Text("Confirm Password"),
-                controller: controllerPassword,
+                controller: controllerPassword1,
                 trailing: Icon(Icons.lock_outline, color: Colors.grey[500]),
               ),
               ButtonKoodiarana(
@@ -70,7 +73,12 @@ class _SignupState extends State<Signup> {
                       decoration: TextDecoration.underline,
                     ),
                   ),
-                  IconButton(onPressed: () {},icon: Image.asset("assets/frame40.png"),),
+                  IconButton(
+                    onPressed: () {
+                      context.go("/login");
+                    },
+                    icon: Image.asset("assets/frame40.png"),
+                  ),
                 ],
               ),
               Padding(
@@ -113,4 +121,14 @@ class _SignupState extends State<Signup> {
       ),
     );
   }
+
+
+   @override
+  void dispose() {
+    super.dispose();
+    controllerEmail.dispose();
+    controllerPassword1.dispose();
+  }
+
+  
 }

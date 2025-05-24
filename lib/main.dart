@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 // import 'package:koodiarana_cl/screens/pages/first_login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:koodiarana_cl/screens/pages/splash_screen.dart';
-import 'package:koodiarana_cl/services/app_router.dart';
 // import 'package:koodiarana_cl/screens/pages/signup.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 

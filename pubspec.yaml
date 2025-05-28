@@ -81,6 +81,10 @@ flutter:
     - assets/bottom1.png
     - assets/bottom2.png
     - assets/bottom3.png
+    - assets/moto.png
+    - assets/course.png
+    - assets/package.png
+    - assets/reservation.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

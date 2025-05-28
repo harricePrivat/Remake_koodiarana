@@ -8,8 +8,12 @@ class InputKoodiarana extends StatelessWidget {
   TextInputType? textInputType;
   Widget? trailing;
   double? height;
+  FocusNode ?focusNode;
   TextEditingController controller;
+  double? width;
   InputKoodiarana({
+    this.focusNode,
+    this.width,
     this.height,
     super.key,
     this.leading,
@@ -23,17 +27,17 @@ class InputKoodiarana extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
+      width: width,
       child: ShadInput(
         keyboardType: textInputType,
-        focusNode: FocusNode(),
+        focusNode: focusNode,
         decoration: ShadDecoration(
           secondaryFocusedBorder: ShadBorder(
             radius: BorderRadius.circular(100),
             top: ShadBorderSide(width: 0.4),
-                        bottom: ShadBorderSide(width: 0.4),
+            bottom: ShadBorderSide(width: 0.4),
             left: ShadBorderSide(width: 0.4),
             right: ShadBorderSide(width: 0.4),
-
           ),
           color: Colors.grey[300],
           border: ShadBorder(radius: BorderRadius.all(Radius.circular(100))),
@@ -42,7 +46,7 @@ class InputKoodiarana extends StatelessWidget {
         leading: leading,
         trailing: trailing,
         placeholder: placeholder,
-          padding: EdgeInsets.only(left: 32.00, right: 32, top: 8, bottom: 8),
+        padding: EdgeInsets.only(left: 32.00, right: 32, top: 8, bottom: 8),
       ),
     );
   }

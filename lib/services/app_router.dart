@@ -7,7 +7,7 @@ import 'package:koodiarana_cl/screens/pages/signup.dart';
 
 class AppRouter {
   final router = GoRouter(
-    initialLocation: "/login",
+    initialLocation: "/homepage",
     routes: [
       GoRoute(path: '/sign-up', builder: (context, state) =>Signup()),
       GoRoute(path: "/first-login",builder: (context,state)=>FirstLogin()),

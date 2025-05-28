@@ -14,7 +14,7 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword1 = TextEditingController();
-    TextEditingController controllerPassword2 = TextEditingController();
+  TextEditingController controllerPassword2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _SignupState extends State<Signup> {
                 spacing: 4,
                 children: [
                   Text(
-                    "Still dont'have an account ",
+                    "Do you have an account  ",
                     style: textTheme.displaySmall,
                   ),
                   Text(
@@ -87,6 +87,7 @@ class _SignupState extends State<Signup> {
               ),
               ButtonKoodiarana(
                 color: Colors.grey[300],
+                pressedBackgroundColor: Colors.grey[400],
                 onTap: () {},
                 child: Row(
                   spacing: 8,
@@ -102,6 +103,7 @@ class _SignupState extends State<Signup> {
               ),
               ButtonKoodiarana(
                 color: Colors.grey[300],
+                pressedBackgroundColor: Colors.grey[400],
                 onTap: () {},
                 child: Row(
                   spacing: 8,
@@ -122,13 +124,10 @@ class _SignupState extends State<Signup> {
     );
   }
 
-
-   @override
+  @override
   void dispose() {
     super.dispose();
     controllerEmail.dispose();
     controllerPassword1.dispose();
   }
-
-  
 }

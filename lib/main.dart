@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-// import 'package:koodiarana_cl/screens/pages/first_login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:koodiarana_cl/providers/bottom_management.dart';
 import 'package:koodiarana_cl/screens/pages/splash_screen.dart';
-// import 'package:koodiarana_cl/screens/pages/signup.dart';
+import 'package:provider/provider.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => BottomManagement()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,9 +24,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ShadApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen()
-    );
+    return ShadApp(debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }

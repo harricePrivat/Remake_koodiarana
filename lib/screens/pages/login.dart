@@ -62,25 +62,27 @@ class _LoginState extends State<Login> {
                     "Sign up",
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w800,
-                      fontSize: 16,
+                      fontSize: 12,
 
                       decoration: TextDecoration.underline,
                     ),
                   ),
                   IconButton(
                     onPressed: () {
-                      context.push("/phone-number");
+                      context.push("/sign-up");
                     },
                     icon: Image.asset("assets/frame40.png"),
                   ),
                 ],
               ),
+
               Padding(
                 padding: EdgeInsets.only(left: 32, right: 32),
                 child: Divider(),
               ),
               ButtonKoodiarana(
                 color: Colors.grey[300],
+                pressedBackgroundColor: Colors.grey[400],
                 onTap: () {},
                 child: Row(
                   spacing: 8,
@@ -96,6 +98,7 @@ class _LoginState extends State<Login> {
               ),
               ButtonKoodiarana(
                 color: Colors.grey[300],
+                pressedBackgroundColor: Colors.grey[400],
                 onTap: () {},
                 child: Row(
                   spacing: 8,

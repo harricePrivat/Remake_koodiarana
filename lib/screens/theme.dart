@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   // Thème clair
   static final ThemeData lightTheme = ThemeData(
+    primaryColorLight: Colors.black26,
     brightness: Brightness.light,
     secondaryHeaderColor: Colors.white,
     primaryColor: const Color.fromARGB(255, 65, 65, 65),

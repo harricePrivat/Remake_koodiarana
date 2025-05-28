@@ -9,6 +9,7 @@ class ButtonKoodiarana extends StatelessWidget {
   Widget child;
   double? width;
   Color? color;
+  Color? pressedBackgroundColor;
   EdgeInsetsGeometry? padding;
   ButtonKoodiarana({
     this.padding,
@@ -16,6 +17,7 @@ class ButtonKoodiarana extends StatelessWidget {
     this.color,
     required this.onTap,
     this.width,
+    this.pressedBackgroundColor,
     required this.child,
   });
 
@@ -24,11 +26,12 @@ class ButtonKoodiarana extends StatelessWidget {
     return ShadButton(
       padding: padding,
       backgroundColor: color,
+      pressedBackgroundColor: pressedBackgroundColor,
       onPressed: onTap,
       decoration: ShadDecoration(
         border: ShadBorder(radius: BorderRadius.circular(100)),
       ),
-      width: width ?? max(0,MediaQuery.of(context).size.width - 80),
+      width: width ?? max(0, MediaQuery.of(context).size.width - 80),
       height: 45,
       child: child,
     );

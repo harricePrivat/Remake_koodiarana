@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class TurboService extends StatelessWidget {
-  const TurboService({super.key});
+  Widget child;
+  Color? color;
+  Gradient ?gradient;
+  TurboService({super.key, this.gradient,this.color, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -12,28 +16,11 @@ class TurboService extends StatelessWidget {
         width: (MediaQuery.of(context).size.width) - 32,
         height: 100,
         decoration: BoxDecoration(
-          color: Color(0xFF161CCC),
+          color: color,
           borderRadius: BorderRadius.circular(28),
+          gradient: gradient
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset("assets/moto.png"),
-            FloatingActionButton(
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30), // Arrondi personnalisé
-              ),
-              onPressed: () {},
-              mini: true,
-              child: Icon(
-                Icons.keyboard_arrow_down_outlined,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
+        child: child,
       ),
     );
   }

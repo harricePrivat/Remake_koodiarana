@@ -5,7 +5,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:koodiarana_cl/screens/components/input.dart';
 import 'package:koodiarana_cl/screens/components/services.dart';
 import 'package:koodiarana_cl/screens/components/turbo_service.dart';
-import 'package:koodiarana_cl/services/get_localisation.dart';
 // import 'package:provider/provider.dart';
 
 class GoogleMaps extends StatefulWidget {
@@ -24,28 +23,30 @@ class _GoogleMapsState extends State<GoogleMaps> {
     Services(
       title: "Voyager",
       width: 100,
-      height: 100,
+      height: 120,
       sourceImages: "assets/course.png",
     ),
     Services(
       title: "Package",
       width: 100,
-      height: 100,
+      height: 120,
       sourceImages: "assets/package.png",
     ),
     Services(
       title: "Reservation",
       width: 100,
-      height: 100,
+      height: 120,
       sourceImages: "assets/reservation.png",
     ),
   ];
   late FocusNode focusNode = FocusNode();
   late FocusNode focusSearch = FocusNode();
-  bool isScroolable = true;
+  bool isScroolable = false;
 
   @override
   void initState() {
+    super.initState();
+    getCurrentLocalisation();
     focusNode.addListener(() {
       if (focusNode.hasFocus) {
         setState(() {
@@ -59,17 +60,6 @@ class _GoogleMapsState extends State<GoogleMaps> {
           isScroolable = true;
         });
       }
-    });
-    super.initState();
-    // getCurrentPostion();r
-    getCurrentLocalisation();
-  }
-
-  Future<void> getCurrentPostion() async {
-    Position position = await GetLocalisation().determinePosition();
-    print("Voici current Postion $_currentPosition");
-    setState(() {
-      _currentPosition = LatLng(position.latitude, position.longitude);
     });
   }
 
@@ -162,11 +152,35 @@ class _GoogleMapsState extends State<GoogleMaps> {
                     style: theme.textTheme.titleLarge,
                   ),
                 ),
-                TurboService(),
+                TurboService(
+                  color: Color(0xFF161CCC),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset("assets/moto.png"),
+                      FloatingActionButton(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            30,
+                          ), // Arrondi personnalisé
+                        ),
+                        onPressed: () {},
+                        mini: true,
+                        child: Icon(
+                          Icons.keyboard_arrow_down_outlined,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
                 SizedBox(height: 16),
 
                 Padding(
-                  padding: EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                  padding: EdgeInsets.only(left: 16, top: 16),
                   child: Text(
                     "Autres services",
                     textAlign: TextAlign.start,
@@ -182,16 +196,59 @@ class _GoogleMapsState extends State<GoogleMaps> {
                 //     return listServices[i];
                 //   },
                 // ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  spacing: 8,
-                  children: [listServices[0], listServices[1], listServices[2]],
+                Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    spacing: 8,
+                    children: [
+                      listServices[0],
+                      listServices[1],
+                      listServices[2],
+                    ],
+                  ),
+                ),
+                TurboService(
+                  gradient: RadialGradient(
+                    center: const Alignment(-1.0, 0.0), // centré à gauche
+                    radius: 1.2,
+                    colors: [
+                      Color(0xFFC7DB76), // très clair
+                      Color(0xFFB0C347), // clair
+                      Color(0xFF889810), // couleur originale
+                      Color(0xFF5F6C0C), //
+                    ],
+                    stops: [0.0, 0.4, 0.7, 1.0],
+                  ),
+
+                  color: Color(0xFF889810),
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset("assets/money.png"),
+                      FloatingActionButton(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            30,
+                          ), // Arrondi personnalisé
+                        ),
+                        onPressed: () {},
+                        mini: true,
+                        child: Icon(
+                          Icons.keyboard_arrow_down_outlined,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
 
-            AnimatedPositioned(
-              duration: Duration(milliseconds: 600),
+            Positioned(
               // bottom: 0,
               // top: 0,
               left: 20,

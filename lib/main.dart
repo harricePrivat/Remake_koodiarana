@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:koodiarana_cl/providers/bottom_management.dart';
+import 'package:koodiarana_cl/providers/scroll1_management.dart';
 import 'package:koodiarana_cl/screens/pages/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -12,6 +13,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => BottomManagement()),
+        ChangeNotifierProvider(create: (context) => Scroll1Management()),
       ],
       child: MyApp(),
     ),

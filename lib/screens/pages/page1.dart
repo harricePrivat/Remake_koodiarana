@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:koodiarana_cl/providers/scroll1_management.dart';
+import 'package:koodiarana_cl/screens/components/floating_action_button.dart';
+import 'package:koodiarana_cl/screens/components/google_maps.dart';
 // import 'package:koodiarana_cl/providers/bottom_management.dart';
 import 'package:koodiarana_cl/screens/components/input.dart';
 import 'package:koodiarana_cl/screens/components/list_taches.dart';
@@ -53,11 +55,12 @@ class _GoogleMapsState extends State<GoogleMaps> {
     super.initState();
 
     getCurrentLocalisation();
+
     scrollControl.addListener(() {
-      // searchController.
       if (scrollControl.position.pixels < 100 &&
           scrollControl.position.userScrollDirection ==
               ScrollDirection.forward) {
+        FocusScope.of(context).unfocus();
         Provider.of<Scroll1Management>(
           context,
           listen: false,
@@ -125,24 +128,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
                           ? NeverScrollableScrollPhysics()
                           : ClampingScrollPhysics(),
                   children: [
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: 600),
-                      curve: Curves.bounceInOut,
-                      width: double.infinity,
-                      height: ((10 * MediaQuery.of(context).size.height) / 10),
-                      child: GoogleMap(
-                        initialCameraPosition: CameraPosition(
-                          target: _currentPosition!,
-                          zoom: 14.4746,
-                        ),
-                        myLocationEnabled: true,
-                        // myLocationButtonEnabled: true,
-                        // mapType: MapType.normal,
-                        onMapCreated: (GoogleMapController controller) {
-                          // You can add any additional setup for the map here
-                        },
-                      ),
-                    ),
+                    GoogleMapsKoodiarana(currentPosition: _currentPosition!),
                     SizedBox(height: 16),
                     Padding(
                       padding: EdgeInsets.only(left: 32.00, right: 32),
@@ -280,10 +266,8 @@ class _GoogleMapsState extends State<GoogleMaps> {
                   // top: 0,
                   left: 20,
                   top: 8 * MediaQuery.of(context).size.height / 10 - 28,
-                  child: FloatingActionButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                  child: FloatingActionButtonKoodiarana(
+                    isScroolable: isScrollable.isScrolable,
                     onPressed: () {
                       if (isScrollable.isScrolable == false) {
                         scrollTop(0).then((_) {
@@ -299,18 +283,8 @@ class _GoogleMapsState extends State<GoogleMaps> {
                           FocusScope.of(context).requestFocus(focusNode);
                         });
                       }
-                      // setState(() {
-                      //   isS = !isScroolable;
-                      // });
-                      isScrollable.setScrollable(
-                        !isScrollable.isScrolable,
-                      );
+                      isScrollable.setScrollable(!isScrollable.isScrolable);
                     },
-                    backgroundColor: Colors.white,
-                    child:
-                        isScrollable.isScrolable
-                            ? Icon(Icons.map, color: Colors.red, size: 30)
-                            : Icon(Icons.map, color: Colors.green),
                   ),
                 ),
                 Positioned(

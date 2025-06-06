@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class MyPreviousCoursesWidget extends StatelessWidget {
   String title;
-  Color ?backgroundColor;
-  MyPreviousCoursesWidget({super.key, required this.title,this.backgroundColor});
+  Color? backgroundColor;
+  MyPreviousCoursesWidget({
+    super.key,
+    required this.title,
+    this.backgroundColor,
+  });
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Container(
       margin: EdgeInsets.all(16),
       padding: EdgeInsets.all(20),
       height: 235,
       decoration: BoxDecoration(
-        color:backgroundColor,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -24,11 +29,7 @@ class MyPreviousCoursesWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                ),
+                style: textTheme.bodyMedium
               ),
               Container(
                 width: 32,

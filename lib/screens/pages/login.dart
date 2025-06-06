@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:koodiarana_cl/screens/components/shad_button.dart';
 import 'package:koodiarana_cl/screens/components/input.dart';
 // import 'package:shadcn_ui/shadcn_ui.dart';
-import 'package:shadcn_flutter/shadcn_flutter.dart' as sd;
+// import 'package:shadcn_flutter/shadcn_flutter.dart' as sd;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -45,7 +45,7 @@ class _LoginState extends State<Login> {
                 trailing: Icon(Icons.lock_outline, color: Colors.grey[500]),
               ),
               ButtonKoodiarana(
-                child: sd.Text("Log in ", style: TextStyle(fontSize: 22)),
+                child: Text("Log in ", style: TextStyle(fontSize: 22)),
                 onTap: () {
                   context.go("/homepage");
                 },

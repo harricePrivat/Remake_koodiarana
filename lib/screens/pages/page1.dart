@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:koodiarana_cl/providers/scroll1_management.dart';
+import 'package:koodiarana_cl/screens/components/choose_map.dart';
 import 'package:koodiarana_cl/screens/components/floating_action_button.dart';
 import 'package:koodiarana_cl/screens/components/google_maps.dart';
 // import 'package:koodiarana_cl/providers/bottom_management.dart';
@@ -151,6 +152,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
                       ),
                     ),
                     SizedBox(height: 16),
+                    ChooseMap(),
                     Padding(
                       padding: EdgeInsets.only(left: 16, top: 16),
                       child: Text(

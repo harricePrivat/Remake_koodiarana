@@ -86,6 +86,9 @@ flutter:
     - assets/reservation.png
     - assets/money.png
     - assets/map_style.json
+    - assets/user.png
+    - assets/Package.png
+    - assets/Motorcycle.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

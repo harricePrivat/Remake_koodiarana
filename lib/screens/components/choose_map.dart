@@ -10,9 +10,11 @@ class ChooseMap extends StatefulWidget {
 class _ChooseMapState extends State<ChooseMap> {
   @override
   Widget build(BuildContext context) {
+    final size = (MediaQuery.of(context).size.width / 4);
+
     return SizedBox(
-      width: (MediaQuery.of(context).size.width / 4),
-      height: (MediaQuery.of(context).size.width / 4),
+      width: size,
+      height: size,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),

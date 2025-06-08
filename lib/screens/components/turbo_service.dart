@@ -4,13 +4,20 @@ import 'package:flutter/material.dart';
 class TurboService extends StatelessWidget {
   Widget child;
   Color? color;
-  Gradient ?gradient;
-  TurboService({super.key, this.gradient,this.color, required this.child});
+  Gradient? gradient;
+  EdgeInsetsGeometry? padding;
+  TurboService({
+    super.key,
+    this.padding,
+    this.gradient,
+    this.color,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 16, left: 28, right: 28),
+      padding: padding ?? EdgeInsets.only(top: 16, left: 28, right: 28),
       child: Container(
         padding: EdgeInsets.all(16),
         width: (MediaQuery.of(context).size.width) - 32,
@@ -18,7 +25,7 @@ class TurboService extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(28),
-          gradient: gradient
+          gradient: gradient,
         ),
         child: child,
       ),

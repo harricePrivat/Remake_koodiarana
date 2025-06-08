@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Widget> pages = [GoogleMaps(), Page2(), ProfileScreen()];
+  List<Widget> pages = [GoogleMaps(), HistoryScreen(), ProfileScreen()];
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomManagement>(

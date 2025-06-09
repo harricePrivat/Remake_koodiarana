@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:koodiarana_cl/bloc/get_name_position/get_name_position_bloc.dart';
 import 'package:koodiarana_cl/bloc/get_name_position/get_name_position_event.dart';
 import 'package:koodiarana_cl/providers/scroll1_management.dart';
-import 'package:koodiarana_cl/screens/components/choose_map.dart';
+// import 'package:koodiarana_cl/screens/components/choose_map.dart';
 import 'package:koodiarana_cl/screens/components/floating_action_button.dart';
 import 'package:koodiarana_cl/screens/components/google_maps.dart';
 // import 'package:koodiarana_cl/providers/bottom_management.dart';
@@ -133,7 +134,13 @@ class _GoogleMapsState extends State<GoogleMaps> {
                           ? NeverScrollableScrollPhysics()
                           : ClampingScrollPhysics(),
                   children: [
-                    GoogleMapsKoodiarana(currentPosition: _currentPosition!),
+                    GoogleMapsKoodiarana(
+                      scroll: isScrollable.isScrolable,
+                      globalKey: _globalKey,
+                      focusNode: focusNode,
+                      controller: destination,
+                      currentPosition: _currentPosition!,
+                    ),
                     SizedBox(height: 16),
                     Padding(
                       padding: EdgeInsets.only(left: 32.00, right: 32),
@@ -142,10 +149,18 @@ class _GoogleMapsState extends State<GoogleMaps> {
                         GetNamePositionState
                       >(
                         listener: (context, state) {
+                          if (state is GetNamePositionError) {
+                            Fluttertoast.showToast(
+                              msg: state.message,
+                              toastLength: Toast.LENGTH_SHORT,
+                            );
+                          }
                           if (state is GetNamePositionDone) {
-                            setState(() {
-                              source.text = state.city;
-                            });
+                            if (state.isMyLocation) {
+                              setState(() {
+                                source.text = state.city;
+                              });
+                            }
                           }
                         },
                         child: InputKoodiarana(
@@ -161,6 +176,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
                               onPressed: () {
                                 context.read<GetNamePositionBloc>().add(
                                   GetNamePositionEvent(
+                                    isMyLocation: true,
                                     currentPosition: _currentPosition!,
                                   ),
                                 );
@@ -183,7 +199,10 @@ class _GoogleMapsState extends State<GoogleMaps> {
                           width: 24,
                           child: FloatingActionButton(
                             backgroundColor: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              scrollTop(0);
+                              isScrollable.setScrollable(true);
+                            },
                             child: Icon(
                               Icons.map,
                               color: Colors.black,
@@ -194,7 +213,13 @@ class _GoogleMapsState extends State<GoogleMaps> {
                       ),
                     ),
                     SizedBox(height: 16),
-                    ChooseMap(),
+                    // ChooseMap(),
+                    (destination.text.isNotEmpty && source.text.isNotEmpty)
+                        ? ElevatedButton(
+                          onPressed: () {},
+                          child: Text("Suivant"),
+                        )
+                        : SizedBox(),
                     Padding(
                       padding: EdgeInsets.only(left: 16, top: 16),
                       child: Text(

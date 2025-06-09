@@ -11,7 +11,8 @@ final class GetNamePositionError extends GetNamePositionState {
 
 final class GetNamePositionDone extends GetNamePositionState {
   String city;
-  GetNamePositionDone({required this.city});
+  bool isMyLocation;
+  GetNamePositionDone({required this.city, required this.isMyLocation});
 }
 
 final class GetNamePositionLoading extends GetNamePositionState {}

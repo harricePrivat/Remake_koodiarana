@@ -18,14 +18,21 @@ class GetNamePositionBloc
         if (response.statusCode == 200) {
           final body = jsonDecode(response.body);
           emit(
-            GetNamePositionDone(city: body['results'][0]['formatted_address']),
+            GetNamePositionDone(
+              city: body['results'][0]['formatted_address'],
+              isMyLocation: event.isMyLocation,
+            ),
           );
         } else {
           emit(GetNamePositionError(message: "Lieux introuvables"));
           print("Voici la status code de la reponse ${response}");
         }
       } catch (e) {
-        emit(GetNamePositionError(message: "Erreur provenant de la serveur"));
+        emit(
+          GetNamePositionError(
+            message: "Veuillez vérifier votre connexion internet",
+          ),
+        );
         print("voici l'erreur:$e");
       }
     });

@@ -6,7 +6,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 // ignore: must_be_immutable
 class GetNamePositionEvent extends Equatable {
   LatLng currentPosition;
-  GetNamePositionEvent({required this.currentPosition});
+  bool isMyLocation;
+  GetNamePositionEvent({
+    required this.isMyLocation,
+    required this.currentPosition,
+  });
   @override
-  List<Object> get props => [currentPosition];
+  List<Object> get props => [currentPosition, isMyLocation];
 }

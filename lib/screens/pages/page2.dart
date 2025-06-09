@@ -17,7 +17,7 @@ class HistoryScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              padding: const EdgeInsetsGeometry.all(20),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFFDD95FF), Color(0xFF00D4FF)],

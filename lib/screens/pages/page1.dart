@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:koodiarana_cl/bloc/get_name_position/get_name_position_bloc.dart';
+import 'package:koodiarana_cl/bloc/get_name_position/get_name_position_event.dart';
 import 'package:koodiarana_cl/providers/scroll1_management.dart';
 import 'package:koodiarana_cl/screens/components/choose_map.dart';
 import 'package:koodiarana_cl/screens/components/floating_action_button.dart';
@@ -25,6 +28,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
   //DECLARATION
   LatLng? _currentPosition;
   TextEditingController searchController = TextEditingController();
+  TextEditingController destination = TextEditingController();
   ScrollController scrollControl = ScrollController();
   TextEditingController source = TextEditingController();
   final GlobalKey _globalKey = GlobalKey();
@@ -133,22 +137,60 @@ class _GoogleMapsState extends State<GoogleMaps> {
                     SizedBox(height: 16),
                     Padding(
                       padding: EdgeInsets.only(left: 32.00, right: 32),
-                      child: InputKoodiarana(
-                        key: _globalKey,
-                        controller: source,
-                        focusNode: focusNode,
-                        placeholder: Text("Source..."),
-                        trailing: Icon(Icons.map),
+                      child: BlocListener<
+                        GetNamePositionBloc,
+                        GetNamePositionState
+                      >(
+                        listener: (context, state) {
+                          if (state is GetNamePositionDone) {
+                            setState(() {
+                              source.text = state.city;
+                            });
+                          }
+                        },
+                        child: InputKoodiarana(
+                          key: _globalKey,
+                          controller: source,
+                          focusNode: focusNode,
+                          placeholder: Text("Source..."),
+                          trailing: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              onPressed: () {
+                                context.read<GetNamePositionBloc>().add(
+                                  GetNamePositionEvent(
+                                    currentPosition: _currentPosition!,
+                                  ),
+                                );
+                              },
+                              child: Image.asset("assets/Location.png"),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(height: 16),
                     Padding(
                       padding: EdgeInsets.only(left: 32.00, right: 32),
                       child: InputKoodiarana(
-                        controller: source,
+                        controller: destination,
                         // focusNode: focusNode,
                         placeholder: Text("Destination..."),
-                        trailing: Icon(Icons.map),
+                        trailing: SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            onPressed: () {},
+                            child: Icon(
+                              Icons.map,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(height: 16),
@@ -316,6 +358,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
     source.dispose();
     scrollControl.dispose();
     searchController.dispose();
+    destination.dispose();
     focusNode.dispose();
   }
 }
